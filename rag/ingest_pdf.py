@@ -24,7 +24,7 @@ def save_thumb(pix: fitz.Pixmap, name: str) -> str:
 def ingest_pdf(path: str):
     doc_id = uuid.uuid4()
     insert("INSERT INTO documents(doc_id, title, source_uri) VALUES (%s,%s,%s)",
-           (str(doc_id), str(Path).name, str(Path(path).resolve())))
+           (str(doc_id), Path(path).name, str(Path(path).resolve())))
     print(f"Ingested {path}")
 
     with pdfplumber.open(path) as pdf:
